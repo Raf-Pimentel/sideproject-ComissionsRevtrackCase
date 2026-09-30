@@ -4,6 +4,7 @@ from pathlib import Path
 # Caminhos relativos à raiz do projeto, para funcionar em qualquer máquina
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"      # originais do cliente: somente leitura
+CLEAN = ROOT / "data" / "clean"  # bases tratadas, prontas para a RevTrack (geradas)
 OUTPUTS = ROOT / "outputs"       # entregáveis gerados (xlsx)
 DOCS = ROOT / "docs"
 

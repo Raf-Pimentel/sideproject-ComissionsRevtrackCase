@@ -7,6 +7,7 @@
 - [ ] Conferir uma linha de Diego (rampagem) e uma de Marcos ou Paula (override).
 - [x] Revisar as perguntas para a Carla (`docs/perguntas_carla.md`): revisadas; Q5 antiga (descontos) saiu, Q3 e Q4 detalhadas. Reconferir a redação final antes do envio.
 - [ ] Confirmar as decisões ainda como "Padrão" em `docs/decisoes.md` (D4 a D8; D1, D2 e D3 já confirmadas).
+- [ ] Conferir `data/clean/` (LEIAME.md lista as alterações em relação aos originais).
 - [ ] Subir a configuração na plataforma da RevTrack (**antes** da mensagem à Carla). O Claude ajuda com a especificação; o Rafael passará as informações da plataforma.
 
 ## Do Claude (próximos passos)

@@ -1,0 +1,13 @@
+linha_produto,canal,pct_comissao,observacao
+KIT_RESIDENCIAL,DIRETO,4.0,
+KIT_RESIDENCIAL,PARCEIRO,2.5,
+KIT_RESIDENCIAL,INDICACAO,3.0,
+KIT_COMERCIAL,DIRETO,3.0,
+KIT_COMERCIAL,PARCEIRO,2.0,
+KIT_COMERCIAL,INDICACAO,2.5,
+INSTALACAO,DIRETO,6.0,
+INSTALACAO,INDICACAO,5.0,No canal PARCEIRO a instalação é feita pelo parceiro
+MONITORAMENTO,DIRETO,50.0,Somente sobre a 1ª mensalidade paga
+MONITORAMENTO,PARCEIRO,50.0,Somente sobre a 1ª mensalidade paga
+MONITORAMENTO,INDICACAO,50.0,Somente sobre a 1ª mensalidade paga
+INSTALACAO,PARCEIRO,0.0,Linha ADICIONADA (não existe na tabela do cliente): instalação no canal PARCEIRO é feita pelo parceiro; 0% (decisão D2)

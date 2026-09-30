@@ -1,0 +1,9 @@
+nome,cargo,equipe,gerente,data_admissao,meta_mensal,email
+Ana Ribeiro,Consultora Sênior,Capital,Marcos Teles,2024-03-10,120000.0,ana@solarix.demo
+Bruno Sato,Consultor Pleno,Capital,Marcos Teles,2025-01-15,75000.0,bruno@solarix.demo
+Camila Duarte,Consultora Pleno,Interior,Paula Nogueira,2023-08-01,100000.0,camila@solarix.demo
+Diego Ferraz,Consultor Júnior,Interior,Paula Nogueira,2026-07-20,80000.0,diego@solarix.demo
+Érica Lins,Consultora Júnior,Capital,Marcos Teles,2026-08-03,60000.0,erica@solarix.demo
+João Pedro Almeida,Consultor Sênior,Interior,Paula Nogueira,2022-05-02,150000.0,joao@solarix.demo
+Marcos Teles,Gerente Comercial,Capital,,2021-02-01,,marcos@solarix.demo
+Paula Nogueira,Gerente Comercial,Interior,,2020-09-14,,paula@solarix.demo

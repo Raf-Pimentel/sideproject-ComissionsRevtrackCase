@@ -13,13 +13,14 @@ data/raw (xlsx do cliente, somente leitura)
    -> export.py    outputs/fechamento_solarix.xlsx
 ```
 
-Fora do cálculo, `checks.py` detecta anomalias nos dados e `reports/` gera os relatórios (anomalias, conferência em xlsx, cálculo detalhado de uma pessoa).
+Fora do cálculo, `clean_export.py` valida e grava as bases limpas em `data/clean/` (insumo da RevTrack), `checks.py` detecta anomalias nos dados e `reports/` gera os relatórios (anomalias, conferência em xlsx, cálculo detalhado de uma pessoa).
 
 ## Estrutura
 
 | Caminho | Conteúdo |
 |---|---|
 | `src/solarix/config.py` | Caminhos, parâmetros das regras (faixas, %, prazos) e chaves de cenário |
+| `src/solarix/clean_export.py` | Prepara, valida e grava `data/clean/` (falha sem gravar se houver erro) |
 | `src/solarix/rules/` | `r1_projetos`, `r2_assinaturas`, `r3_split`, `r4_cancelamento`, `r5_meta`, `r6_rampagem`, `r7_override` |
 | `src/solarix/reports/` | `anomalias`, `conferencia`, `detalhe` |
 | `tests/` | Testes por regra, com casos de borda |
