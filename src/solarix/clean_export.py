@@ -125,12 +125,10 @@ def validar(d: dict[str, pd.DataFrame]) -> list[str]:
 
 
 def gravar(d: dict[str, pd.DataFrame], pasta=CLEAN):
-    """CSV (UTF-8, vírgula, ponto decimal, datas AAAA-MM-DD) e xlsx de cada base."""
-    (pasta / "csv").mkdir(parents=True, exist_ok=True)
-    (pasta / "xlsx").mkdir(parents=True, exist_ok=True)
+    """Um CSV por base (UTF-8, vírgula, ponto decimal, datas AAAA-MM-DD)."""
+    pasta.mkdir(parents=True, exist_ok=True)
     for nome, df in d.items():
-        df.to_csv(pasta / "csv" / f"{ARQUIVO[nome]}.csv", index=False, encoding="utf-8", date_format="%Y-%m-%d")
-        df.to_excel(pasta / "xlsx" / f"{ARQUIVO[nome]}.xlsx", index=False)
+        df.to_csv(pasta / f"{ARQUIVO[nome]}.csv", index=False, encoding="utf-8", date_format="%Y-%m-%d")
 
 
 def main():

@@ -2,9 +2,7 @@
 
 Geradas por `python -m solarix.clean_export` a partir de `data/raw/`. O comando **não grava nada** se a validação encontrar qualquer erro (chaves duplicadas, campos vazios, valores fora do domínio, vendas sem item, baixas sem venda, nomes fora do cadastro, espaços sobrando etc.). Última validação: **0 erros**.
 
-Cada base existe em dois formatos com o mesmo conteúdo:
-- `csv/`: UTF-8 sem BOM, separador vírgula, ponto decimal, datas `AAAA-MM-DD`, vazio = sem valor.
-- `xlsx/`: uma planilha por base, datas como data do Excel.
+Formato dos arquivos: CSV, UTF-8 sem BOM, separador vírgula, ponto decimal, datas `AAAA-MM-DD`, vazio = sem valor.
 
 ## Bases
 

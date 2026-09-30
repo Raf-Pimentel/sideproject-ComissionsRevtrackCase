@@ -4,7 +4,7 @@ Cálculo de referência das comissões da Solarix Energia (ago e set/2026), conf
 
 ## Estrutura
 - `data/raw/`: arquivos originais do cliente (não editar)
-- `data/clean/`: bases validadas e prontas para subir na RevTrack (csv e xlsx), com dicionário em `LEIAME.md`
+- `data/clean/`: bases validadas e prontas para subir na RevTrack (CSV), com dicionário em `LEIAME.md`
 - `src/solarix/`: pipeline (`load`, `clean`, `model`, regras R1 a R7 em `rules/`, `closing`, `compare`, `export`) e relatórios em `reports/`
 - `tests/`: testes por regra (casos de borda)
 - `docs/`: briefing, arquitetura, decisões, perguntas para a cliente, pendências, log de anomalias, cálculo detalhado
