@@ -4,7 +4,7 @@ from pathlib import Path
 # Caminhos relativos à raiz do projeto, para funcionar em qualquer máquina
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"      # originais do cliente: somente leitura
-CLEAN = ROOT / "data" / "clean"  # dados tratados (gerados)
+OUTPUTS = ROOT / "outputs"       # entregáveis gerados (xlsx)
 DOCS = ROOT / "docs"
 
 # Nome de cada arquivo de entrada; centralizado para trocar em um só lugar

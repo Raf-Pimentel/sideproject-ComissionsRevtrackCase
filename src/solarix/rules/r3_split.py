@@ -1,7 +1,7 @@
 """R3: venda conjunta. Comissão dividida 60% (vendedor principal) / 40% (vendedor 2). Vale também para a meta (R5)."""
 import pandas as pd
 
-from ..config import SPLIT_PRINCIPAL, SPLIT_VENDEDOR2
+from ..config import SPLIT_VENDEDOR2
 from ..money import r2
 
 

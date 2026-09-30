@@ -1,6 +1,6 @@
 # Log de anomalias dos dados
 
-Gerado por `python -m solarix.anomalias`. Cada item indica o que foi encontrado, o tratamento proposto e o que perguntar à Carla.
+Gerado por `python -m solarix.reports.anomalias`. Cada item indica o que foi encontrado, o tratamento proposto e o que perguntar à Carla.
 
 | ID | Sev. | Fonte | Título |
 |---|---|---|---|

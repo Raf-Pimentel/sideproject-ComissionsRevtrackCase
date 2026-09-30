@@ -18,7 +18,7 @@ class Anomaly:
     rows: list = field(default_factory=list)
 
 
-def _key(s: str) -> str:
+def chave_nome(s: str) -> str:
     """Chave de comparação: sem acento, minúscula, sem espaços nas pontas."""
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
     return " ".join(s.lower().split())
@@ -27,12 +27,12 @@ def _key(s: str) -> str:
 def clean_names(vendas: pd.DataFrame, cadastro: pd.DataFrame, controle: pd.DataFrame):
     """Mapeia cada variação de nome de pessoa para o nome canônico do cadastro."""
     # O cadastro é a fonte de verdade dos nomes; o CRM varia
-    canon = {_key(n): n for n in cadastro["nome"]}
+    canon = {chave_nome(n): n for n in cadastro["nome"]}
     anomalies = []
     v = vendas.copy()  # não altera o DataFrame recebido
     for col in ("vendedor", "vendedor2"):
         raw = v[col]
-        fixed = raw.map(lambda x: canon.get(_key(x), x) if pd.notna(x) else x)
+        fixed = raw.map(lambda x: canon.get(chave_nome(x), x) if pd.notna(x) else x)
         changed = raw.notna() & (raw != fixed)
         if changed.any():
             variants = raw[changed].map(repr).value_counts().to_dict()
@@ -49,5 +49,5 @@ def clean_names(vendas: pd.DataFrame, cadastro: pd.DataFrame, controle: pd.DataF
         anomalies.append(Anomaly("A02", "ALTA", "01_CRM_Vendas", "Vendedor fora do cadastro",
                                  f"{sorted(unknown)}", "Nenhum tratamento automático; revisar."))
     c = controle.copy()
-    c["nome"] = c["nome"].map(lambda x: canon.get(_key(x), x))
+    c["nome"] = c["nome"].map(lambda x: canon.get(chave_nome(x), x))
     return v, c, anomalies

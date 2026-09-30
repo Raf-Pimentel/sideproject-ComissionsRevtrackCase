@@ -92,7 +92,8 @@ def test_r4_venda_ativa_e_comissionavel():
     assert marcar_comissionavel(b).loc[0, "comissionavel"]
 
 
-@pytest.mark.parametrize("ating,bonus", [(0.79, 0), (0.80, 800), (0.999, 800), (1.0, 1500), (1.199, 1500), (1.2, 2500), (3.0, 2500)])
+@pytest.mark.parametrize("ating,bonus", [
+    (0.79, 0), (0.80, 800), (0.999, 800), (1.0, 1500), (1.199, 1500), (1.2, 2500), (3.0, 2500)])
 def test_r5_faixas_de_bonus(ating, bonus):
     assert bonus_por_atingimento(ating) == bonus
 

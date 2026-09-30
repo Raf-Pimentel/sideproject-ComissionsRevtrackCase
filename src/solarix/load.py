@@ -3,7 +3,6 @@ import pandas as pd
 
 from .config import FILES, RAW
 
-
 # Colunas são renomeadas por posição (o export do cliente usa cabeçalhos longos e com acento).
 # Se o layout do arquivo mudar, a leitura falha alto em vez de trocar colunas em silêncio.
 

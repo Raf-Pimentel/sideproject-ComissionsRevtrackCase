@@ -1,22 +1,32 @@
 """Gera docs/calculo_<nome>.md: o cálculo de um comissionado, conta por conta, para conferência manual.
-Uso: python -m solarix.detalhe "Ana Ribeiro"
+Uso: python -m solarix.reports.detalhe "Ana Ribeiro"
 """
 import sys
 
 import pandas as pd
 
-from .closing import calcular
-from .compare import comparar
-from .config import COMPETENCIAS, DOCS
-from .model import Modelo, baixas_do_periodo, montar
-from .rules.r1_projetos import comissao_projetos, redutor_desconto
-from .rules.r2_assinaturas import comissao_assinaturas
-from .rules.r3_split import dividir_valor
-from .rules.r5_meta import bonus_por_atingimento
+from ..closing import calcular
+from ..compare import comparar
+from ..config import COMPETENCIAS, DOCS
+from ..model import Modelo, baixas_do_periodo, montar
+from ..rules.r1_projetos import comissao_projetos
+from ..rules.r2_assinaturas import comissao_assinaturas
+from ..rules.r3_split import dividir_valor
+from ..rules.r5_meta import bonus_por_atingimento
 
-BRL = lambda x: f"R$ {x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")  # noqa: E731
-PCT = lambda x: f"{x:g}%".replace(".", ",")  # noqa: E731
-DATA = lambda d: f"{d:%d/%m/%Y}"  # noqa: E731
+
+def BRL(x: float) -> str:  # noqa: N802
+    """Moeda no formato brasileiro: R$ 1.234,56."""
+    return f"R$ {x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def PCT(x: float) -> str:  # noqa: N802
+    """Percentual com vírgula decimal."""
+    return f"{x:g}%".replace(".", ",")
+
+
+def DATA(d) -> str:  # noqa: N802
+    return f"{d:%d/%m/%Y}"
 
 
 def _secao_baixas(m: Modelo, nome: str, comp: str, out: list):
@@ -36,10 +46,11 @@ def _secao_baixas(m: Modelo, nome: str, comp: str, out: list):
             itens = m.itens.set_index("id_item")["valor_bruto"]
             linhas = proj[proj["n_baixa"] == r.n_baixa]
             tot_bruto = sum(itens[i] for i in linhas["id_item"])
-            out.append("| Item | Bruto | Parte do pago | % tabela | Redutor | Comissão do item |")
-            out.append("|---|---|---|---|---|---|")
+            out.append("| Item | Bruto | Peso (bruto do item ÷ bruto total) | Parte do pagamento que cabe ao item | % tabela | Redutor | Comissão do item |")
+            out.append("|---|---|---|---|---|---|---|")
             for x in linhas.itertuples():
                 out.append(f"| {x.id_item} ({x.linha_produto}) | {BRL(itens[x.id_item])} | "
+                           f"{PCT(round(itens[x.id_item] / tot_bruto * 100, 2))} | "
                            f"{BRL(r.valor_pago)} × {BRL(itens[x.id_item])} / {BRL(tot_bruto)} = {BRL(x.base_item)} | "
                            f"{PCT(x.pct_comissao)} | {PCT(x.redutor * 100)} | {BRL(x.base_item)} × {PCT(x.pct_comissao)} × {PCT(x.redutor * 100)} = **{BRL(x.comissao)}** |")
             com = round(linhas["comissao"].sum(), 2)
@@ -91,7 +102,7 @@ def gerar(nome: str) -> str:
     fech, _ = calcular(m)
     comp = comparar(fech, m.controle).set_index(["nome", "competencia"])
     out = [f"# Cálculo detalhado: {nome}", "",
-           "Gerado por `python -m solarix.detalhe`. Regras: R1 (projetos), R2 (assinaturas), R3 (split), R4 (cancelamento), R5 (meta), R6 (rampagem), R7 (override).", ""]
+           "Gerado por `python -m solarix.reports.detalhe`. Regras: R1 (projetos), R2 (assinaturas), R3 (split), R4 (cancelamento), R5 (meta), R6 (rampagem), R7 (override).", ""]
     for c in COMPETENCIAS:
         out += [f"## Competência {c}", "", "### Comissão sobre vendas (regime de caixa: mês da data de pagamento)", ""]
         total_com = _secao_baixas(m, nome, c, out)

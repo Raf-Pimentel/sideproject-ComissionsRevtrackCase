@@ -38,6 +38,6 @@ def comissao_projetos(baixas: pd.DataFrame, itens: pd.DataFrame, tabela: pd.Data
     linhas["redutor"] = linhas["desconto_pct"].map(redutor_desconto)
     # D5: arredonda por item
     linhas["comissao"] = [r2(b * p / 100 * r) for b, p, r in
-                          zip(linhas["base_item"], linhas["pct_comissao"], linhas["redutor"])]
+                          zip(linhas["base_item"], linhas["pct_comissao"], linhas["redutor"], strict=True)]
     return linhas[["n_baixa", "id_venda", "competencia", "id_item", "linha_produto", "valor_pago",
                    "base_item", "pct_comissao", "redutor", "comissao"]]

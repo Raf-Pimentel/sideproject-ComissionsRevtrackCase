@@ -1,8 +1,8 @@
-"""Gera docs/anomalias.md a partir dos dados brutos. Uso: python -m solarix.anomalias"""
-from .checks import check_baixas, check_cadastro, check_tabela, check_vendas
-from .clean import clean_names
-from .config import DOCS
-from .load import load_baixas, load_cadastro, load_controle, load_itens, load_tabela, load_vendas
+"""Gera docs/anomalias.md a partir dos dados brutos. Uso: python -m solarix.reports.anomalias"""
+from ..checks import check_baixas, check_cadastro, check_tabela, check_vendas
+from ..clean import clean_names
+from ..config import DOCS
+from ..load import load_baixas, load_cadastro, load_controle, load_itens, load_tabela, load_vendas
 
 # Ordem de exibição: o que exige decisão primeiro
 ORDER = {"ALTA": 0, "MEDIA": 1, "BAIXA": 2, "INFO": 3}
@@ -23,7 +23,7 @@ def collect():
 def render(anomalies) -> str:
     """Monta o Markdown: tabela-resumo no topo e uma seção detalhada por anomalia."""
     lines = ["# Log de anomalias dos dados", "",
-             "Gerado por `python -m solarix.anomalias`. Cada item indica o que foi encontrado, o tratamento proposto e o que perguntar à Carla.",
+             "Gerado por `python -m solarix.reports.anomalias`. Cada item indica o que foi encontrado, o tratamento proposto e o que perguntar à Carla.",
              "", "| ID | Sev. | Fonte | Título |", "|---|---|---|---|"]
     lines += [f"| {a.id} | {a.severity} | {a.source} | {a.title} |" for a in anomalies]
     for a in anomalies:

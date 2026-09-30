@@ -1,14 +1,14 @@
 """Gera outputs/conferencia_anomalias.xlsx: cada problema em linguagem simples, com arquivo e linha do Excel.
-Uso: python -m solarix.conferencia
+Uso: python -m solarix.reports.conferencia
 """
 import pandas as pd
 from openpyxl.styles import Alignment
 
-from .clean import _key
-from .config import ERP_EMISSAO, FILES, RAW
-from .load import load_baixas, load_cadastro, load_itens, load_tabela, load_vendas
+from ..clean import chave_nome
+from ..config import ERP_EMISSAO, FILES, OUTPUTS
+from ..load import load_baixas, load_cadastro, load_itens, load_tabela, load_vendas
 
-OUT = RAW.parents[1] / "outputs" / "conferencia_anomalias.xlsx"
+OUT = OUTPUTS / "conferencia_anomalias.xlsx"
 
 # Deslocamento entre o índice do DataFrame e o número da linha no Excel de origem:
 # arquivos com cabeçalho na linha 1 -> +2; baixas (3 linhas de título + cabeçalho) -> +5
@@ -51,16 +51,16 @@ def build():
         ev.append(_ev(3, "tabela", i, f"INSTALACAO / {r.canal}: {r.pct_comissao}%  (não existe linha INSTALACAO / PARCEIRO)"))
 
     # 5. Nome de vendedor com grafia diferente do cadastro
-    canon = {_key(n): n for n in cad["nome"]}
+    canon = {chave_nome(n): n for n in cad["nome"]}
     for i, r in v.iterrows():
         for col in ("vendedor", "vendedor2"):
             x = r[col]
-            if pd.notna(x) and x != canon.get(_key(x), x):
-                ev.append(_ev(4, "vendas", i, f"Venda {r.id_venda}: '{x}' (no cadastro é '{canon[_key(x)]}')"))
+            if pd.notna(x) and x != canon.get(chave_nome(x), x):
+                ev.append(_ev(4, "vendas", i, f"Venda {r.id_venda}: '{x}' (no cadastro é '{canon[chave_nome(x)]}')"))
 
     # 6. Parcela paga pela metade
     g = b.groupby(["id_venda", "parcela"]).agg(pago=("valor_pago", "sum"), parc=("valor_parcela", "first"))
-    for (venda, parc), r in g[g["pago"] + 0.011 < g["parc"]].iterrows():
+    for (venda, parc), _ in g[g["pago"] + 0.011 < g["parc"]].iterrows():
         for i, x in b[(b.id_venda == venda) & (b.parcela == parc)].iterrows():
             ev.append(_ev(5, "baixas", i, f"Baixa {x.n_baixa}: parcela {x.n_parcela}, pago R$ {x.valor_pago:,.2f} de R$ {x.valor_parcela:,.2f}"))
 
@@ -119,7 +119,7 @@ def main():
         ev.to_excel(w, sheet_name="Onde conferir", index=False)
         for name, widths in (("Resumo", [5, 11, 40, 70, 34, 45, 55]), ("Onde conferir", [10, 42, 15, 95])):
             ws = w.sheets[name]
-            for col, wd in zip("ABCDEFG", widths):
+            for col, wd in zip("ABCDEFG", widths, strict=False):
                 ws.column_dimensions[col].width = wd
             for row in ws.iter_rows(min_row=2):
                 for c in row:
