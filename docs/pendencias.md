@@ -19,3 +19,4 @@
 - [ ] Mensagem para a Carla (entregável 3), a partir de `docs/perguntas_carla.md`.
 - [ ] Página "como configurei" (entregável 4), incluindo as ressalvas: o cartão "Vendas Totais" do relatório soma as bases dos componentes (não é faturamento); a faixa final do bônus usa 999% como "sem limite" porque a plataforma exige limite superior; a meta é uma só, de valor 100, e a base de cada linha já vem em fração da meta da pessoa.
 - [ ] Atualizar a planilha de fechamento com os números da plataforma, se o Rafael exportar os relatórios de agosto e setembro.
+- [ ] Corrigir o cartão "Vendas Totais" da RevTrack (base dos componentes de comissão = valor pago, taxa por coluna). Procedimento em `docs/como_configurei.md`, seção 10 (limitação 1). Combinado para depois da apresentação.
