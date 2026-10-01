@@ -10,13 +10,13 @@ Status: **Confirmada** (decidida pelo Rafael) · **Padrão** (assumida pelo Clau
 | D4 | Override em venda conjunta | 1% sobre 100% do valor pago, equipe do vendedor principal | Padrão | Override bate em 16/16 linhas. |
 | D5 | Arredondamento | Por item (R1), meio para cima, 2 casas | Padrão | Diferenças de R$ 0,01 em Ana (set) e Bruno (ago), dentro da tolerância. |
 | D6 | Contagem dos 60 dias (R4) | cancelamento − venda ≤ 60 zera tudo | Padrão | Bate. Casos do dado (46 e 102 dias) não ficam perto do limite. |
-| D7 | Rampagem | Complemento = 1.500 − (R1+R2 pós-split), meses 1 a 3 com o mês da admissão contando | Padrão | Diego bate. Érica set: ver P1. |
+| D7 | Rampagem | Complemento = 1.500 − (R1+R2 pós-split), meses 1 a 3 com o mês da admissão contando | Padrão | Diego bate. Érica set: ver P1. Na RevTrack a regra roda no recurso Mínimo Garantido do plano Rampagem (R$ 1.500 sobre as duas comissões, sem o bônus) e reproduz os mesmos valores. |
 | D8 | Bônus de meta | Meta cheia, sem proporcionalidade; só PROJETO não cancelado | Padrão | Bônus bate em 16/16 linhas. |
 
 ## Divergências com o controle da Carla
 
 | ID | Linha | Diferença (nosso − Carla) | Leitura |
 | -- | ----- | ------------------------- | ------- |
-| P1 | Érica Lins, set/2026 | Rampagem +R$ 1.309,84 | **Confirmado pelo Rafael: a Carla esqueceu de pagar.** Comissão de set = R$ 190,16 e a Érica está no 2º mês de casa (admitida 03/08/2026), então a R6 garante R$ 1.500,00 e o complemento é R$ 1.500,00 − R$ 190,16 = R$ 1.309,84. **Vai na mensagem à Carla como ponto a informar (I1).** |
+| P1 | Érica Lins, set/2026 | Rampagem +R$ 1.309,84 | **Confirmado pelo Rafael: a Carla esqueceu de pagar.** Comissão de set = R$ 190,16 e a Érica está no 2º mês de casa (admitida 03/08/2026), então a R6 garante R$ 1.500,00 e o complemento é R$ 1.500,00 − R$ 190,16 = R$ 1.309,84. O total da Érica no controle (R$ 2.690,16) é R$ 190,16 de comissão mais R$ 2.500,00 de bônus, o que sugere que o bônus entrou na conta da garantia (a regra diz que não conta). **Vai na mensagem à Carla como ponto a informar (I1).** |
 | P2 | Bruno Sato, set/2026 | Comissão −R$ 638,03 (Carla acima) | **Não explicada.** O override dos gerentes bate, então o conjunto de baixas é o mesmo. Testei: variações de faixa de desconto, split, baixas de outros meses ou pós-cancelamento, monitoramento parcela 2+, Opção B da D2. Nenhuma fecha. Abordagem escolhida pelo Rafael: registrar como pergunta (Q4). |
 | P3 | Camila Duarte, ago/2026 | Comissão −R$ 184,00 (Carla acima) | **Não explicada.** Mesmo teste do P2, sem resultado. O valor redondo sugere ajuste manual. Abordagem escolhida pelo Rafael: registrar como pergunta (Q5). |

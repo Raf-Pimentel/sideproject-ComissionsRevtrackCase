@@ -13,6 +13,8 @@ data/raw (xlsx do cliente, somente leitura)
    -> export.py    outputs/fechamento_solarix.xlsx
 ```
 
+O pipeline em Python é a **segunda opinião independente**: a configuração da RevTrack (conjuntos, colunas calculadas, planos e componentes, descrita em `docs/como_configurei.md`) é conferida contra ele pessoa a pessoa.
+
 Fora do cálculo, `clean_export.py` valida e grava as bases limpas em `data/clean/` (insumo da RevTrack), `checks.py` detecta anomalias nos dados e `reports/` gera os relatórios (anomalias, conferência em xlsx, cálculo detalhado de uma pessoa).
 
 ## Estrutura
@@ -47,4 +49,4 @@ Fora do cálculo, `clean_export.py` valida e grava as bases limpas em `data/clea
 - Nenhuma ambiguidade é decidida em silêncio: vai para `docs/decisoes.md`.
 - Números em documentos e mensagens vêm da saída do código, não de memória.
 - Toda divergência com a cliente é classificada (arredondamento, regra ambígua, erro da cliente, erro nosso, dado sujo).
-- O Claude não tem acesso à conta da RevTrack; entrega a especificação para replicar.
+- O Claude não tem acesso à conta da RevTrack: o Rafael configurou a plataforma seguindo um passo a passo e enviou prints de cada etapa. A configuração final está em `docs/como_configurei.md`.
