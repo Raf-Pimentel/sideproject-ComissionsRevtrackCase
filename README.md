@@ -27,4 +27,6 @@ python -m solarix.reports.detalhe "Ana Ribeiro"    # docs/calculo_ana_ribeiro.md
 - `docs/arquitetura.md`: fluxo, princípios e convenções
 - `docs/decisoes.md`: hipóteses e status
 - `docs/perguntas_carla.md`: avisos e perguntas para a cliente
+- `docs/mensagem_carla.md`: mensagem de fechamento para a cliente (entregável 3)
+- `docs/como_configurei.md`: arquitetura da conta na RevTrack, hipóteses e pendências (entregável 4)
 - `docs/pendencias.md`: o que falta
